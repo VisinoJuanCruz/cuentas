@@ -1,0 +1,28 @@
+.app-container{
+  display:flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.form-container{
+  
+}
+
+.person-container{
+  border-radius: 25px;
+ 
+  color:yellow;
+}
+
+.cuentas-saldadas{
+  color:green;
+}
+
+.btn{
+  margin-top: 15px;
+}
+
+.deuda{
+  color:rgb(159, 102, 37);
+}
