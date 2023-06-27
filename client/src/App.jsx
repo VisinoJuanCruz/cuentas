@@ -10,7 +10,7 @@ function App() {
   const [loading,setLoading] = useState(true)
   
   const loadPersonas = () => {
-    fetch(`http://localhost:4000/api/personas`)
+    fetch(`https://cuentas-s0yy.onrender.com/api/personas`)
     .then(res => res.json())
     .then(personas => {
       setPersonas(personas)
@@ -35,7 +35,7 @@ const submitHandler = (e) => {
       "owe":owe
     }
     
-      fetch(`http://localhost:4000/api/personas`,{
+      fetch(`https://cuentas-s0yy.onrender.com/api/personas`,{
           method: 'PUT',
           headers: { 'Content-Type': 'application/json' },
           mode:'cors',
@@ -53,7 +53,6 @@ if(loading){
 }
   
 
-console.log(personas[0].name)
 return (
     <div className="app-container">
       

@@ -9,7 +9,7 @@ export const personForm = () => {
           "name": name,
           }
     
-      fetch(`http://localhost:4000/api/personas`,{
+      fetch(`http://localhost:${process.env.PORT}/api/personas`,{
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           mode:'cors',
