@@ -48,15 +48,46 @@ const submitHandler = (e) => {
 }
 
 
-
-return (
+  return (
     <div className="app-container">
       
     <div className="form-container">
-      <div className="persons-container">
-      <h1>Cuentas</h1>
-        
-        {personas.map((persona,id)=> {
+      
+
+        {loading ?
+        <div className="persons-container">
+          <h1>Cuentas</h1>
+          <div className="person-container">
+            <form onSubmit={submitHandler}>
+              <h2><p>Name</p> </h2>
+              <p><strong>Gastó: $</strong>0</p>
+              <p><strong>Debe : $</strong>0</p>
+              Gastó: <input defaultValue="0" name="spent" type="number" placeholder="Gastó" />
+              <br/>
+              Debe : <input defaultValue="0" name="owe" type="number" placeholder="Debe" />
+              <br/>
+              <button className="btn btn-dark mx-2" type="submit">Actualizar</button>
+            </form>
+          </div>
+          
+          <div className="person-container">
+          <form onSubmit={submitHandler}>
+          <h2><p>Name</p> </h2>
+          <p><strong>Gastó: $</strong>0</p>
+          <p><strong>Debe : $</strong>0</p>
+          Gastó: <input defaultValue="0" name="spent" type="number" placeholder="Gastó" />
+          <br/>
+          Debe : <input defaultValue="0" name="owe" type="number" placeholder="Debe" />
+          <br/>
+          <button className="btn btn-dark mx-2" type="submit">Actualizar</button>
+        </form>
+        </div>
+        </div>
+       
+        :
+        <div className="persons-container">
+          <h1>Cuentas</h1>
+          {personas.map((persona,id)=> {
           return(<div className="person-container" key={id}>
               
               <form onSubmit={submitHandler}>
@@ -73,13 +104,14 @@ return (
           
               
             </div>
-          )
-        })}
+          )})}
+          </div>
+        }
         
       </div>
       <div>
         </div>
-          {
+          {!loading ?
              ((personas[0].spent / 2 + personas[1].owe) == (personas[1].spent / 2 + personas[0].owe))
              ?<h1 className="cuentas-saldadas">CUENTAS SALDADAS</h1>
              :
@@ -87,14 +119,15 @@ return (
          ? <h1 className="deuda">{personas[1].name} debe ${((personas[0].spent / 2 + personas[1].owe) - (personas[1].spent / 2 + personas[0].owe))}</h1>
          : <h1 className="deuda">{personas[0].name} debe ${((personas[1].spent / 2 + personas[0].owe) - (personas[0].spent / 2 + personas[1].owe))}</h1>
                  
-      
+      :
+      <h1>Cargando...</h1>
                  
       } 
         
 
         </div>
       
-    </div>
+    
   )
 }
 
