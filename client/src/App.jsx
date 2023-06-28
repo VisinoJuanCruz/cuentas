@@ -47,11 +47,7 @@ const submitHandler = (e) => {
 
 }
 
-if(loading){
-  return <h1>Cargando...</h1>
 
-}
-  
 
 return (
     <div className="app-container">
@@ -64,9 +60,9 @@ return (
           return(<div className="person-container" key={id}>
               
               <form onSubmit={submitHandler}>
-                <h2><p  id={persona._id}>{persona.name}</p></h2>
-                <p><strong>Gastó: $</strong>{persona.spent}</p>
-                <p><strong>Debe : $</strong>{persona.owe}</p>
+                <h2>{loading ? <p>Name</p> : <p  id={persona._id}>{persona.name}</p>}</h2>
+                <p><strong>Gastó: $</strong></p>{loading ? <p>0</p> : <p>{persona.spent}</p>}
+                <p><strong>Debe : $</strong></p>{loading ? <p>0</p> : <p>{persona.owe}</p>}
                 Gastó: <input defaultValue="0" name="spent" type="number" placeholder="Gastó" />
                 <br/>
                 Debe : <input defaultValue="0" name="owe" type="number" placeholder="Debe" />
