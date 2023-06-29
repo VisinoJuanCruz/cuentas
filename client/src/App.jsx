@@ -1,6 +1,7 @@
 import { useState , useEffect} from 'react'
 import './App.css'
 import axios from 'axios'
+import { MovesTable } from './components/movesTable.jsx'
 
 
 
@@ -8,7 +9,6 @@ function App() {
 
   const [personas, setPersonas] = useState([])
   const [loading,setLoading] = useState(true)
-  const [moves, setMoves] = useState([])
   
   const loadPersonas = () => {
     fetch(`https://cuentas-s0yy.onrender.com/api/personas`)
@@ -19,18 +19,9 @@ function App() {
     },[loading])
 }
 
-  const loadMoves = () => {
-    fetch(`https://cuentas-s0yy.onrender.com/api/moves`)
-    .then(res => res.json())
-    .then(moves => {
-      setMoves(moves)
-      setLoading(false)
-    },[loading])
-}
-
+  
 useEffect(() => {
   loadPersonas()
-  loadMoves()
 },[loading])
 
 const submitHandler = (e) => {
@@ -45,6 +36,8 @@ const submitHandler = (e) => {
       "spent":spent,
       "owe":owe
     }
+
+    
     
       fetch(`https://cuentas-s0yy.onrender.com/api/personas`,{
           method: 'PUT',
@@ -52,12 +45,14 @@ const submitHandler = (e) => {
           mode:'cors',
           body: JSON.stringify(newPerson)
       })
+
       fetch(`https://cuentas-s0yy.onrender.com/api/moves`,{
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         mode:'cors',
         body: JSON.stringify(newPerson)
     })
+      
     setLoading(true)
     e.currentTarget.spent.value = 0;
     e.currentTarget.owe.value = 0;
@@ -141,24 +136,7 @@ const submitHandler = (e) => {
                  
       }
       </div>
-      <div className="moves-container">
-        {
-          loading ?
-          <h3>Cargando movimientos...</h3>
-          :
-          <ul>
-            {moves.map((move,id)=> {
-              return (
-                <li key={id}> <p>{`${move.name} gastó ${move.spent} y debe ${move.owe}`}</p></li>
-              )
-            })}
-            </ul>
-        }
-              
-            
-              
-        
-      </div>
+      <MovesTable />
         
 
         </div>
