@@ -38,7 +38,15 @@ export const MovesTable = () => {
           <ul>
             {moves.map((move,id)=> {
               return (
-                <li className="list-move" key={id}> <p><strong>{move.name}</strong> {`gastó ${move.spent} y debe ${move.owe}`}</p></li>
+                <li className="list-move" key={id}>
+                  <p>{`${move.date.slice(0,10)} : `}
+                  <strong>{move.name}</strong> 
+                  { (move.spent !== 0) ? ` gastó ${move.spent} ` : ""}
+                  { (move.owe !== 0) ? ` debe ${move.owe} ` : ""}
+                  { (move.motive != 0 ) ? ` en ${move.motive}` : ""}
+                  
+                  </p>
+                </li>
               )
             })}
             </ul>

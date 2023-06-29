@@ -27,14 +27,15 @@ const submitHandler = (e) => {
   const id = e.target.querySelector('p[id]').getAttribute('id');
   const spent = e.currentTarget.spent.value 
   const owe = e.currentTarget.owe.value
+  const motive = e.currentTarget.motive.value
   const name = e.target.querySelector('p[name]').getAttribute('name');
-  console.log("Me guardo el name ",name)
 
   const newPerson= {
       "name":name,
       "id": id,
       "spent":spent,
-      "owe":owe
+      "owe":owe,
+      "motive":motive
     }
 
     
@@ -105,6 +106,8 @@ const submitHandler = (e) => {
                 Gastó: <input defaultValue="0" name="spent" type="number" placeholder="Gastó" />
                 <br/>
                 Debe : <input defaultValue="0" name="owe" type="number" placeholder="Debe" />
+                <br/>
+                Motivo : <input name="motive" defaultValue="0" type="text" placeholder="Motivo" />
                 <br/>
                 <button className="btn btn-dark mx-2" type="submit">Actualizar</button>
               </form>
