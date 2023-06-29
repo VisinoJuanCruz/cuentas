@@ -1,12 +1,14 @@
-require('dotenv').config();
+const dotenv = require('dotenv').config();
 const express = require('express');
 const app = express();
-const port = process.env.PORT || 3000;
+const port = process.env.PORT ;
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 const cors = require('cors');
 
-mongoose.connect(process.env.MONGODB_URL).then(()=>{
+const MONGODB_URL= `mongodb+srv://${process.env.USERDATABASE}:${process.env.PASSWORDDATABASE}@cluster0.ft1s0cc.mongodb.net/cuentas`
+
+mongoose.connect(MONGODB_URL).then(()=>{
     console.log('Connected to MongoDB');
 
 })
@@ -19,6 +21,15 @@ const personSchema = new Schema({
 })
 
 const Person = mongoose.model('Person', personSchema, "Persons");
+
+const moveSchema = new Schema({
+    name: String,
+    spent: Number,
+    owe: Number,
+}
+)
+
+const Move = mongoose.model('Move', moveSchema, "Move");
 
 
 
@@ -37,9 +48,32 @@ app.get("/api/personas", async (req, res) => {
     )
 })
 
+app.get("/api/moves", async (req, res) => {
+    Move.find().then((moves)=>{
+        res.status(200).json(moves)
+    })
+})
+
+app.post("/api/moves", async (req, res) => {
+    const person = req.body
+    console.log(person,"NUEVO MOV")
+    
+    Move.create({
+        name:person.name,
+        spent:person.spent,
+        owe:person.owe,
+    
+    }).then((createdMove)=>{
+        res.status(201).json(createdMove)
+    })
+})
+
+
+
+
 app.post("/api/personas", async (req, res) => {
     const person = req.body
-    console.log(person)
+    console.log(person.name)
     
     Person.create({
         name:person.name,
@@ -51,10 +85,32 @@ app.post("/api/personas", async (req, res) => {
     })
 })
 
+app.post("/api/personas", async (req, res) => {
+    const person = req.body
+    console.log(person,"NUEVO MOVIMIENTO")
+    
+    Move.create({
+        name:person.name,
+        spent:0,
+        owe:0,
+    
+    }).then((createdPerson)=>{
+        res.status(201).json(createdPerson)
+    })
+})
+
 app.put("/api/personas/", async (req, res) => {
     const person = req.body;
-    console.log(person);
   
+    Move.create({
+        name:person.name,
+        spent:person.spent,
+        owe:person.owe,
+
+    }).then((createdMove)=>{
+        res.status(201).json(createdMove)
+    })
+
     try {
       const updatedPerson = await Person
       .findByIdAndUpdate(person.id, {
@@ -64,7 +120,6 @@ app.put("/api/personas/", async (req, res) => {
       });
   
       console.log("Finish update");
-      console.log(updatedPerson);
       res.status(200).json(updatedPerson);
     } catch (error) {
       console.error("Error al actualizar los valores:", error);

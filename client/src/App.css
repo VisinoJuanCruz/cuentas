@@ -1,4 +1,13 @@
+@media (max-width: 800px) {
+  .app-container{
+    padding-top:5%;
+  }
+}
+
+
 .app-container{
+  background-color: #242424;
+  margin-top:5%;
   display:flex;
   flex-direction: column;
   justify-content: center;
@@ -6,9 +15,34 @@
   text-align: center;
 }
 
-.form-container{
+.link{
+  position:fixed;
+  top:10px;
+  left: 1/2;
+  color:white;
+  font-size: 2em;
+  background-color: rgb(127, 146, 255);
+  padding:1%;
   
+    border-radius: 8px;
+    border: 1px solid transparent;
+    padding: 0.6em 1.2em;
+    font-size: 1em;
+    font-weight: 500;
+    font-family: inherit;
+    background-color: #1a1a1a;
+    cursor: pointer;
+    transition: border-color 0.25s;
 }
+  .link:hover {
+    border-color: #646cff;
+  }
+  .link:focus,
+  .link:focus-visible {
+    outline: 4px auto -webkit-focus-ring-color;
+  }
+  
+
 
 .person-container{
   border-radius: 25px;

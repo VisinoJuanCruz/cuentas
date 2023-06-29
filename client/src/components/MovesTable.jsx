@@ -1,5 +1,9 @@
 
 import { useEffect, useState } from 'react'
+import './movesTable.css'
+import { Link } from 'react-router-dom'
+
+
 export const MovesTable = () => {
     
 
@@ -12,7 +16,6 @@ export const MovesTable = () => {
         fetch(`https://cuentas-s0yy.onrender.com/api/moves`)
         .then(res => res.json())
         .then(moves => {
-            console.log(moves)
           setMoves(moves)
           setLoading(false)
         },[loading])
@@ -26,7 +29,8 @@ export const MovesTable = () => {
     
     
     return (
-        <div className="moves-container">
+        <div className="app-container">
+          <Link className="link"to="/cuentas" >Ver cuentas</Link>
         {
           loading ?
           <h3>Cargando movimientos...</h3>
@@ -34,7 +38,7 @@ export const MovesTable = () => {
           <ul>
             {moves.map((move,id)=> {
               return (
-                <li key={id}> <p>{`${move.name} gastó ${move.spent} y debe ${move.owe}`}</p></li>
+                <li className="list-move" key={id}> <p><strong>{move.name}</strong> {`gastó ${move.spent} y debe ${move.owe}`}</p></li>
               )
             })}
             </ul>
