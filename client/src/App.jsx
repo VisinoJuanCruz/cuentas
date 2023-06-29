@@ -30,8 +30,10 @@ const submitHandler = (e) => {
   const id = e.target.querySelector('p[id]').getAttribute('id');
   const spent = e.currentTarget.spent.value 
   const owe = e.currentTarget.owe.value
+  const name = e.target.querySelector('p[name]').getAttribute('name');
 
   const newPerson= {
+    "name":name,
       "id": id,
       "spent":spent,
       "owe":owe
@@ -103,7 +105,7 @@ const submitHandler = (e) => {
           return(<div className="person-container" key={id}>
               
               <form onSubmit={submitHandler}>
-                <h2><p  id={persona._id}>{persona.name}</p></h2>
+                <h2><p  name="name" id={persona._id}>{persona.name}</p></h2>
                 <p><strong>Gastó: ${persona.spent}</strong></p>
                 <p><strong>Debe : ${persona.owe}</strong></p>
                 Gastó: <input defaultValue="0" name="spent" type="number" placeholder="Gastó" />
