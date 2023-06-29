@@ -91,9 +91,9 @@ const submitHandler = (e) => {
           return(<div className="person-container" key={id}>
               
               <form onSubmit={submitHandler}>
-                <h2>{loading ? <p>Name</p> : <p  id={persona._id}>{persona.name}</p>}</h2>
-                <p><strong>Gastó: $</strong></p>{loading ? <p>0</p> : <p>{persona.spent}</p>}
-                <p><strong>Debe : $</strong></p>{loading ? <p>0</p> : <p>{persona.owe}</p>}
+                <h2><p  id={persona._id}>{persona.name}</p></h2>
+                <p><strong>Gastó: ${persona.spent}</strong></p>
+                <p><strong>Debe : ${persona.owe}</strong></p>
                 Gastó: <input defaultValue="0" name="spent" type="number" placeholder="Gastó" />
                 <br/>
                 Debe : <input defaultValue="0" name="owe" type="number" placeholder="Debe" />
