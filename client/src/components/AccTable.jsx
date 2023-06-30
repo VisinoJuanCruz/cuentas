@@ -40,7 +40,7 @@ const submitHandler = (e) => {
 
     
     
-      fetch(`capi/personas`,{
+      fetch(`https://cuentas-s0yy.onrender.com/api/personas`,{
           method: 'PUT',
           headers: { 'Content-Type': 'application/json' },
           mode:'cors',
