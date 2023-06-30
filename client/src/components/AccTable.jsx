@@ -62,8 +62,11 @@ const submitHandler = (e) => {
     //now i get name and spent from deuda
     const name = e.target.parentNode.querySelector('span[name="name"]').textContent;
     const spent = e.target.parentNode.querySelector('span[name="spent"]').textContent;
+    // get id from h1
+    const id = e.target.parentNode.querySelector('h1[id]').getAttribute('id');
     
     const updatedPerson = {
+      id : id,
       name: name,
       spent: parseInt(spent),
       owe: 0,
@@ -159,12 +162,12 @@ const submitHandler = (e) => {
              :
            ((personas[0].spent / 2 + personas[1].owe) > (personas[1].spent / 2 + personas[0].owe))
         ?<div> 
-          <h1 className="deuda"><span name="name">{personas[1].name}</span> debe $<span name="spent">{((personas[0].spent / 2 + personas[1].owe) - (personas[1].spent / 2 + personas[0].owe))}</span></h1>
+          <h1 id={personas[0]._id} className="deuda"><span name="name">{personas[1].name}</span> debe $<span name="spent">{((personas[0].spent / 2 + personas[1].owe) - (personas[1].spent / 2 + personas[0].owe))}</span></h1>
          <button onClick={handlerClick}>Poner al día</button>
          </div>
          : 
          <div>
-          <h1 className="deuda"><span name="name">{personas[0].name} </span>debe $<span name="spent">{((personas[1].spent / 2 + personas[0].owe) - (personas[0].spent / 2 + personas[1].owe))}</span></h1>
+          <h1 id={personas[1]._id} className="deuda"><span name="name">{personas[0].name} </span>debe $<span name="spent">{((personas[1].spent / 2 + personas[0].owe) - (personas[0].spent / 2 + personas[1].owe))}</span></h1>
             <button onClick={handlerClick}>Poner al día</button>
             </div>
       :
