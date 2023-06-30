@@ -40,7 +40,7 @@ const submitHandler = (e) => {
 
     
     
-      fetch(`https://cuentas-s0yy.onrender.com/api/personas`,{
+      fetch(`capi/personas`,{
           method: 'PUT',
           headers: { 'Content-Type': 'application/json' },
           mode:'cors',
@@ -55,6 +55,28 @@ const submitHandler = (e) => {
 
 }
 
+  const handlerClick = (e) => {
+    e.preventDefault()
+    
+    //now i get name and spent from deuda
+    const name = e.target.parentNode.querySelector('span[name="name"]').textContent;
+    const spent = e.target.parentNode.querySelector('span[name="spent"]').textContent;
+    
+    const updatedPerson = {
+      name: name,
+      spent: parseInt(spent),
+      owe: 0,
+    }
+    fetch(`https://cuentas-s0yy.onrender.com/api/personas/today`,{
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          mode:'cors',
+          body: JSON.stringify(updatedPerson)
+      })
+
+   
+
+    }
 
   return (
    
@@ -121,15 +143,20 @@ const submitHandler = (e) => {
         
       </div>
       <div>
-        
           {!loading ?
              ((personas[0].spent / 2 + personas[1].owe) == (personas[1].spent / 2 + personas[0].owe))
              ?<h1 className="cuentas-saldadas">CUENTAS SALDADAS</h1>
              :
            ((personas[0].spent / 2 + personas[1].owe) > (personas[1].spent / 2 + personas[0].owe))
-         ? <h1 className="deuda">{personas[1].name} debe ${((personas[0].spent / 2 + personas[1].owe) - (personas[1].spent / 2 + personas[0].owe))}</h1>
-         : <h1 className="deuda">{personas[0].name} debe ${((personas[1].spent / 2 + personas[0].owe) - (personas[0].spent / 2 + personas[1].owe))}</h1>
-                 
+        ?<div> 
+          <h1 className="deuda"><span name="name">{personas[1].name}</span> debe $<span name="spent">{((personas[0].spent / 2 + personas[1].owe) - (personas[1].spent / 2 + personas[0].owe))}</span></h1>
+         <button onClick={handlerClick}>Poner al día</button>
+         </div>
+         : 
+         <div>
+          <h1 className="deuda"><span name="name">{personas[0].name} </span>debe $<span name="spent">{((personas[1].spent / 2 + personas[0].owe) - (personas[0].spent / 2 + personas[1].owe))}</span></h1>
+            <button onClick={handlerClick}>Poner al día</button>
+            </div>
       :
       <h1>Cargando...</h1>
                  

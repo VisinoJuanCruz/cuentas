@@ -7,6 +7,8 @@ export const personForm = () => {
     
         const newPerson= {
           "name": name,
+          "owe":0,
+          "spent":0,
           }
     
       fetch(`http://localhost:${process.env.PORT}/api/personas`,{
