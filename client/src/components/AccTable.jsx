@@ -71,6 +71,7 @@ const submitHandler = (e) => {
       motive: "SALDAR CUENTAS",
     }
 
+    console.log(`LE ENVIO ESTO AL BACK PARA PEDIR QUE RESETEE TODOS MENOS ${updatedPerson.name}`,updatedPerson)
     
 
     fetch(`https://cuentas-s0yy.onrender.com/api/personas/reset`,{
