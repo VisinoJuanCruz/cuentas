@@ -70,19 +70,17 @@ const submitHandler = (e) => {
       owe: 0,
       motive: "SALDAR CUENTAS",
     }
-    fetch(`https://cuentas-s0yy.onrender.com/api/personas/today`,{
+
+    
+
+    fetch(`https://cuentas-s0yy.onrender.com/api/personas/reset`,{
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           mode:'cors',
           body: JSON.stringify(updatedPerson)
       })
 
-      fetch(`https://cuentas-s0yy.onrender.com/api/personas`,{
-        method: 'PUT',
-        headers: { 'Content-Type': 'application/json' },
-        mode:'cors',
-        body: JSON.stringify(updatedPerson)
-    })
+     
 
     setLoading(false)
    
