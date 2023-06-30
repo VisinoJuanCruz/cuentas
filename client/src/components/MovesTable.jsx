@@ -32,14 +32,15 @@ export const MovesTable = () => {
     const handleClick = (e) => {
       e.preventDefault()
       
+      setLoading(true)
       const id =  e.target.id
-      console.log(id,"ESTE ID")
       fetch(`https://cuentas-s0yy.onrender.com/api/moves/${id}`,{
         method: 'DELETE'
       })
       .then(res => res.json())
       .then(data => {
         loadMoves()
+        setLoading(false)
       })
     }
     
