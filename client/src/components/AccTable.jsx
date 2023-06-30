@@ -58,6 +58,7 @@ const submitHandler = (e) => {
   const handlerClick = (e) => {
     e.preventDefault()
     
+    setLoading(true)
     //now i get name and spent from deuda
     const name = e.target.parentNode.querySelector('span[name="name"]').textContent;
     const spent = e.target.parentNode.querySelector('span[name="spent"]').textContent;
@@ -66,6 +67,7 @@ const submitHandler = (e) => {
       name: name,
       spent: parseInt(spent),
       owe: 0,
+      motive: "SALDAR CUENTAS",
     }
     fetch(`https://cuentas-s0yy.onrender.com/api/personas/today`,{
           method: 'POST',
@@ -74,6 +76,14 @@ const submitHandler = (e) => {
           body: JSON.stringify(updatedPerson)
       })
 
+      fetch(`https://cuentas-s0yy.onrender.com/api/personas`,{
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        mode:'cors',
+        body: JSON.stringify(updatedPerson)
+    })
+
+    setLoading(false)
    
 
     }
