@@ -59,10 +59,8 @@ const submitHandler = (e) => {
     e.preventDefault()
     
     setLoading(true)
-    //now i get name and spent from deuda
     const name = e.target.parentNode.querySelector('span[name="name"]').textContent;
     const spent = e.target.parentNode.querySelector('span[name="spent"]').textContent;
-    // get id from h1
     const id = e.target.parentNode.querySelector('h1[id]').getAttribute('id');
     
     const updatedPerson = {
