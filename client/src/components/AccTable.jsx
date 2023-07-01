@@ -54,7 +54,7 @@ const submitHandler = (e) => {
     e.currentTarget.owe.value = 0;
 
 }
-
+/*
   const handlerClick = (e) => {
     e.preventDefault()
     
@@ -81,13 +81,21 @@ const submitHandler = (e) => {
           body: JSON.stringify(updatedPerson)
       })
 
+      fetch(`https://cuentas-s0yy.onrender.com/api/personas`,{
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        mode:'cors',
+        body: JSON.stringify(updatedPerson)
+    })
+
+
      
 
     setLoading(false)
    
 
     }
-
+*/
   return (
    
     <div className="app-container">
@@ -160,12 +168,12 @@ const submitHandler = (e) => {
            ((personas[0].spent / 2 + personas[1].owe) > (personas[1].spent / 2 + personas[0].owe))
         ?<div> 
           <h1 id={personas[0]._id} className="deuda"><span name="name">{personas[1].name}</span> debe $<span name="spent">{((personas[0].spent / 2 + personas[1].owe) - (personas[1].spent / 2 + personas[0].owe))}</span></h1>
-         <button onClick={handlerClick}>Poner al día</button>
+         {/* <button onClick={handlerClick}>Poner al día</button> */}
          </div>
          : 
          <div>
           <h1 id={personas[1]._id} className="deuda"><span name="name">{personas[0].name} </span>debe $<span name="spent">{((personas[1].spent / 2 + personas[0].owe) - (personas[0].spent / 2 + personas[1].owe))}</span></h1>
-            <button onClick={handlerClick}>Poner al día</button>
+            {/*<button onClick={handlerClick}>Poner al día</button>*/}
             </div>
       :
       <h1>Cargando...</h1>
