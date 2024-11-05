@@ -141,7 +141,7 @@ const submitHandler = (e) => {
               
               <form onSubmit={submitHandler}>
                 <h2><p  name={persona.name} id={persona._id}>{persona.name}</p></h2>
-                <p><strong>Gastó: ${persona.spent}</strong></p>
+                <p><strong>Gastó : ${persona.spent}</strong></p>
                 <p><strong>Debe : ${persona.owe}</strong></p>
                 Gastó: <input defaultValue="0" name="spent" type="number" placeholder="Gastó" />
                 <br/>
